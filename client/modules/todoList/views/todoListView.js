@@ -15,30 +15,53 @@ define(function (require) {
         collection: null,
 
         initialize: function() {
-            this.render();
+            this.fetchList();
         },
 
         events: {
-            'click #submit': 'addTodo'
+            'click #submit': 'addTodo',
+            'click .filter button': 'filterTasks'
         },
 
-        render: function () {
+        render: function() {
+            var self = this;
+
+            this.$el.html(template);
+            return this;
+        },
+
+        renderList: function(data) {
+            var self = this;
+            $("#todoList", self.$el).html("");
+            _.each(data, function(model) {
+                $("#todoList", self.$el).append((new ModelView({model: model})).el);
+            });
+        },
+
+        fetchList: function () {
             var self = this;
 
             this.collection = new Collection();
             this.collection.fetch({
                 success: function (data) {
-                    self.$el.html(template);
-                    _.each(data.models, function(model) {
-                        $("#todoList", self.$el).append((new ModelView({model: model})).el);
-                    });
+                    self.render();
+                    self.renderList(data.models);
                 },
                 error: function (data, response, options) {
                     console.log('Failed to load details.');
                 }
             });
+        },
 
-            return this;
+        filterTasks: function(e) {
+            var filterType = e.currentTarget.id;
+            var data = this.collection.models;
+            if(filterType === "pendingTasks") {
+                data = this.collection.where({status: 0});
+            } else if(filterType === "completedTasks") {
+                data = this.collection.where({status: 1});
+            }
+            this.renderList(data);
         },
 
         addTodo: function() {
@@ -49,6 +72,7 @@ define(function (require) {
             });
             model.save(null,{
                 success: function(data) {
+                    self.collection.add(data);
                     $("#todoList", self.$el).append((new ModelView({model: data})).el);
                     $("#newTodo", self.$el).val("");
                 },

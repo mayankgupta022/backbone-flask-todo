@@ -13,7 +13,8 @@ define(function (require) {
         model: null,
 
         initialize: function(options) {
-            this.model = new Model(options.model.attributes);
+            this.model = options.model;
+            // this.model = new Model(options.model.attributes);
             this.render();
         },
 
