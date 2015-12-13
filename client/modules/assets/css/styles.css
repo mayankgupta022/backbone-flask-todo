@@ -1,0 +1,47 @@
+body {
+    font-family: source-sans-pro, sans-serif;
+    font-size: 15px;
+    background-color: #fefefe;
+    margin: 0px auto;
+    padding: 5px;
+    width: 100%;
+}
+
+.my-menu {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+ul {
+    list-style: none;
+    padding: 5px;
+}
+
+.todo {
+    border-top: 1px solid #ddd;
+    padding: 10px;
+}
+
+.todo div{
+    display: inline;
+    cursor: pointer;
+}
+
+.todo input {
+    display: none;
+}
+
+.todo .submit {
+    display: none;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.todo .strike {
+    text-decoration: line-through;
+}
