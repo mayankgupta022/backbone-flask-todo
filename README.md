@@ -6,6 +6,8 @@ A simple CRUD application for Todolist created in backbonejs and python flask
 Installation
 ------------
 
+By default, localStorage of browser is used for persistence. In case persistence on server is required, comment out line <pre>document.mode = "local";</pre> from <pre>client/modules/common/models/model.js</pre> and continue with following steps; 
+
 1. <pre class="console">pip install flask</pre>
 2. <pre class="console">pip install flask-mysql</pre>
 3. <pre class="console">pip install flask-cors</pre>
