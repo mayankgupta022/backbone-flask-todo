@@ -68,7 +68,8 @@ define(function (require) {
             var self = this;
 
             var model = new Model({
-                task: $("#newTodo", this.$el).val()
+                task: $("#newTodo", this.$el).val(),
+                status: 0
             });
             model.save(null,{
                 success: function(data) {

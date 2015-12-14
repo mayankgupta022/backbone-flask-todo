@@ -17,7 +17,8 @@ require.config({
         'underscore': {
             exports: '_'
         }
-    }
+    },
+    wait: 200
 });
 
 require(['jquery', 'backbone', 'underscore', 'router'], function ($, Backbone, _, Router) {
